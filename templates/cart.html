@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Your Liked Products:</h2>
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Action</th>
+        </tr>
+        {% for user_like in liked_products %}
+            <tr>
+                <!-- Link the product name to the product page -->
+                <td><a href="{{ url_for('product', product_id=user_like.product.id) }}">{{ user_like.product.name }}</a></td>
+                <td>
+                    {% set in_cart = false %}
+                    {% for item in cart %}
+                        {% if item.product == user_like.product %}
+                            {% set in_cart = true %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if in_cart %}
+                        <button disabled>Added to Cart</button>
+                    {% else %}
+                        <form action="{{ url_for('add_to_cart', product_id=user_like.product.id) }}" method="GET">
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="2">No liked products.</td></tr>
+        {% endfor %}
+    </table>
+
+    <!-- Liked Products Pagination -->
+    <div class="pagination">
+        <a href="{{ url_for('cart_view', liked_page=liked_pagination.prev_num) }}">Previous</a>
+        <span class="pagination-page">Page {{ liked_pagination.page }} of {{ liked_pagination.pages }}</span>
+        <a href="{{ url_for('cart_view', liked_page=liked_pagination.next_num) }}">Next</a>
+    </div>
+
+    <h2>Cart Items:</h2>
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Action</th>
+        </tr>
+        {% for item in cart %}
+        <tr class="cart-item">
+            <td><a href="{{ url_for('product', product_id=item.product.id) }}">{{ item.product.name }}</a></td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.product.price * item.quantity }}</td>
+            <td>
+                <div class="quantity-controls">
+                    <form action="{{ url_for('update_cart', cart_item_id=item.id, action='increase') }}" method="GET">
+                        <button type="submit" class="quantity-btn">+</button>
+                    </form>
+                    <form action="{{ url_for('update_cart', cart_item_id=item.id, action='decrease') }}" method="GET">
+                        <button type="submit" class="quantity-btn">-</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% if item.quantity > item.product.stock %}
+            <tr><td colspan="4" class="error">Insufficient stock, only {{ item.product.stock }} left</td></tr>
+        {% endif %}
+    {% endfor %}
+    </table>
+
+    <h3>Total: ￥{{ total }}</h3>
+    <button type="submit" class="checkout"> <a href="{{ url_for('checkout') }}">Checkout</a></button>
+
+    <!-- Cart Pagination -->
+    <div class="pagination">
+        <a href="{{ url_for('cart_view', liked_page=liked_pagination.prev_num) }}">Previous</a>
+        <span class="pagination-page">Page {{ liked_pagination.page }} of {{ liked_pagination.pages }}</span>
+        <a href="{{ url_for('cart_view', liked_page=liked_pagination.next_num) }}">Next</a>
+    </div>
+</div>
+{% endblock %}

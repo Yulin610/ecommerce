@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    <div class="cards1">
+        <a href="{{ url_for('product', product_id=0) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/心之喵.png') }}" alt="心之喵"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=0) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/纹秋.png') }}" alt="纹秋"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=0) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/金掌.png') }}" alt="金掌"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=0) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/核熔星盘.png') }}" alt="核熔星盘"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=3) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/时和岁稔1.png') }}" alt="时和岁稔1"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=2) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/裁春1.png') }}" alt="裁春1"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=4) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/琼枝冰绡1.png') }}" alt="琼枝冰绡1"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=1) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/星序协响1.png') }}" alt="星序协响1"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=0) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/心之喵.png') }}" alt="心之喵"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=0) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/纹秋.png') }}" alt="纹秋"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=0) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/金掌.png') }}" alt="金掌"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=0) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/核熔星盘.png') }}" alt="核熔星盘"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=3) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/时和岁稔1.png') }}" alt="时和岁稔1"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=2) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/裁春1.png') }}" alt="裁春1"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=4) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/琼枝冰绡1.png') }}" alt="琼枝冰绡1"></div>
+        </a>
+        <a href="{{ url_for('product', product_id=1) }}">
+        <div class="card1"><img src="{{ url_for('static', filename='images/星序协响1.png') }}" alt="星序协响1"></div>
+        </a>
+    </div>
+<div class="cards1">
+    {% for product in products %}
+        <a href="{{ url_for('product', product_id=product.id) }}">
+            <div class="card1">
+                <!-- Use image2 for the product image in the store page -->
+                 <img src="{{ url_for('static', filename='images/' + (product.image2 if product.image2 else 'nothing.png')) }}" alt="{{ product.name }}">
+            </div>
+        </a>
+    {% endfor %}
+</div>
+  </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+{% endblock %}

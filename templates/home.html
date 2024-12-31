@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+<br>
+
+<!-- New Slide Section -->
+<div id="slide-container">
+  <div id="click-section">
+    <div id="drawerboxes">
+      <div class="drawerbox active">
+        <button class="drawer-btn active" onclick="slideTo(1)">Stellar Harmony<span class="drawer-head">1</span></button>
+      </div>
+      <div class="drawerbox">
+        <button class="drawer-btn" onclick="slideTo(2)">Spring Cutting<span class="drawer-head">2</span></button>
+      </div>
+      <div class="drawerbox">
+        <button class="drawer-btn" onclick="slideTo(3)">Time and Harvest<span class="drawer-head">3</span></button>
+      </div>
+      <div class="drawerbox">
+        <button class="drawer-btn" onclick="slideTo(4)">Crystal Branches and Ice Silk<span class="drawer-head">4</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="slide-section">
+    <div id="slide-bar">
+      <div id="bar"></div>
+    </div>
+    <div id="card-section">
+      <div id="card1" class="card">
+        <div class="card-small-title">The Rhythm of Stars</div>
+        <div class="card-title">Stellar Harmony</div>
+        <div class="card-content">Core containing energy, simulating the cycle of star evolution</div>
+        <div class="card-img">
+          <a href="{{ url_for('product', product_id=1) }}">
+            <img src="{{ url_for('static', filename='images/星序协响.png') }}" alt="The Rhythm of Stars">
+          </a>
+        </div>
+      </div>
+      <div id="card2" class="card">
+        <div class="card-small-title">Beyond Beginning and End</div>
+        <div class="card-title">Spring Cutting</div>
+        <div class="card-content">The quiet bud of the camellia tree</div>
+        <div class="card-img">
+          <a href="{{ url_for('product', product_id=2) }}">
+            <img src="{{ url_for('static', filename='images/裁春.png') }}" alt="Beyond Beginning and End">
+          </a>
+        </div>
+      </div>
+      <div id="card3" class="card">
+        <div class="card-small-title">Blessing of Heaven</div>
+        <div class="card-title">Time and Harvest</div>
+        <div class="card-content">The cycle of day and night, the changing of the stars</div>
+        <div class="card-img">
+          <a href="{{ url_for('product', product_id=3) }}">
+            <img src="{{ url_for('static', filename='images/时和岁稔.png') }}" alt="Blessing of Heaven">
+          </a>
+        </div>
+      </div>
+      <div id="card4" class="card">
+        <div class="card-small-title">Scenes Beyond the View</div>
+        <div class="card-title">Crystal Branches and Ice Silk</div>
+        <div class="card-content">Search the peaks, travel through the mountains</div>
+        <div class="card-img">
+          <a href="{{ url_for('product', product_id=4) }}">
+            <img src="{{ url_for('static', filename='images/琼枝冰绡.png') }}" alt="Crystal Branches and Ice Silk">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

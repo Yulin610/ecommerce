@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        <label for="name">Name:</label>
+        {{ form.name }}
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        {{ form.description }}
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        {{ form.price }}
+    </div>
+    <div>
+        <label for="category">Category:</label>
+        {{ form.category }}
+    </div>
+    <div>
+        <label for="image">Product Page Image URL:</label>
+        {{ form.image }}
+    </div>
+    <div>
+        <label for="image2">Store Image URL:</label>
+        {{ form.image2 }}
+    </div>
+    <div>
+        <label for="stock">Stock:</label>
+        {{ form.stock }}
+    </div>
+    <div>
+        <button type="submit">Add Product</button>
+    </div>
+</form>
+
+{% endblock %}

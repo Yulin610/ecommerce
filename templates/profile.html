@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ user.username }}'s Profile</h2>
+<div class="container">
+<p>Your Liked Products:</p>
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    {% for like in liked_products %}
+       <tr>
+           <!-- Link the product name to the product page -->
+           <td><a href="{{ url_for('product', product_id=like.id) }}">{{ like.name }}</a></td>
+           <td>{{ like.price }}</td>
+           <td>
+               <input type="hidden" id="csrf_token" value="{{ session['csrf_token'] }}">
+               <button class="like-unlike-btn" data-product-id="{{ like.id }}">Unlike</button>
+           </td>
+       </tr>
+    {% endfor %}
+</table>
+
+<!-- Pagination Navigation -->
+<div class="pagination">
+    {% if pagination.has_prev %}
+        <a href="{{ url_for('profile', page=pagination.prev_num) }}">上一页</a>
+    {% endif %}
+    <span>第 {{ pagination.page }} 页，共 {{ pagination.pages }} 页</span>
+    {% if pagination.has_next %}
+        <a href="{{ url_for('profile', page=pagination.next_num) }}">下一页</a>
+    {% endif %}
+</div>
+
+</div>
+{% endblock %}

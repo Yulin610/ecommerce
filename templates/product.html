@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="product-page">
+    {% if product %}
+        <div class="image-container">
+            <!-- Use image for the main product image, or fallback to 'error.png' if no image is provided -->
+            <img src="{{ url_for('static', filename='images/' + (product.image if product.image else 'nothing.png')) }}" alt="Product Image">
+        </div>
+
+        <div class="text-container">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+            <p class="price">价格: ￥{{ product.price }}</p>
+        </div>
+    {% else %}
+        <p>未找到此商品。</p>
+    {% endif %}
+</div>
+
+<div class="form-container">
+        {% if user %}
+            <div class="button-container">
+                {% set is_liked = false %}
+                {% for like in user.liked_products %}
+                    {% if like.product.id == product.id %}
+                        {% set is_liked = true %}
+                    {% endif %}
+                {% endfor %}
+
+                <!-- CSRF Token for AJAX -->
+                <input type="hidden" id="csrf_token" value="{{ session['csrf_token'] }}">
+
+                <div class="button-group">
+                    {% if is_liked %}
+                        <button class="like-unlike-btn" data-product-id="{{ product.id }}">Unlike</button>
+                    {% else %}
+                        <button class="like-unlike-btn" data-product-id="{{ product.id }}">Like</button>
+                    {% endif %}
+
+                    {% if user and user.is_admin %}
+                        <form action="{{ url_for('delete_product', product_id=product.id) }}" method="GET">
+                            <button type="submit" class="delete">Delete Product</button>
+                        </form>
+                    {% endif %}
+
+                    <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="GET">
+                        <button type="submit"class="add-to-cart1">Add to cart</button>
+                    </form>
+                    <button class="stock">Stock:{{ product.stock }}</button>
+                </div>
+            </div>
+        {% else %}
+            <p>Please log in to like this product.</p>
+        {% endif %}
+</div>
+
+{% endblock %}

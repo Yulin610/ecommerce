@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<nav>
+    <ul>
+        <li class="slide1"></li>
+        <li class="slide2"></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('store') }}">Store</a></li>
+        <li><a href="{{ url_for('cart_view') }}">Cart</a></li>
+        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+        {% if 'user' in session %}
+            {% if session.get('is_admin') %}
+                <li><a href="{{ url_for('add_product') }}">Add</a></li> <!-- 显示“Add Product”链接 -->
+            {% endif %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

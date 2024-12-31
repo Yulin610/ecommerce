@@ -1,0 +1,703 @@
+/* Existing Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-block-size: 100%;
+    display: grid;
+    place-content: center;
+    padding-block: 10dvh; /* Set top/bottom padding to 10% viewport height */
+    background: #87CEEB; /* New background color */
+}
+a {
+    text-decoration: none;
+}
+nav {
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    justify-content: center; /* Ensure items are centered */
+    background: #f5f5f5;
+    box-shadow: 20px 40px 40px #00000033;
+    padding: 10px 20px; /* Adjust padding to avoid excessive stretching */
+    border-radius: 20px;
+    width: 100%; /* Ensure it spans full width */
+    max-width: 1200px; /* Optionally, set a max-width */
+    margin: 0 auto;
+    margin-bottom:5%;
+}
+
+nav ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    padding: 15px 50px;
+    font-size: 2rem;
+    color: rgb(70, 100, 180);
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease; /* Smooth transition on hover */
+}
+
+nav a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;  /* Adjust the value as needed for the roundness */
+    transform: scale(0.6);  /* Shrinks the size by 20% */
+}
+
+.slide1, .slide2 {
+    position: absolute;
+    height: 10px;
+    border-radius: 10em;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1.05);
+}
+
+.slide1 {
+    background-color: rgb(170, 190, 255);
+    opacity: 0;  /* Initially hidden */
+    z-index: 2;
+}
+
+.slide2 {
+    background-color: rgba(170, 190, 255, .5);
+    opacity: 0;  /* 隐藏时的透明度 */
+    visibility: hidden;  /* 隐藏元素，避免阻止点击 */
+    z-index: 1;
+    box-shadow: 0 0 20px #ffffffaa inset;
+}
+
+/* .squeeze effect */
+.squeeze {
+    transform: scale(0.9);
+}
+
+
+
+/* 优化产品页面样式 */
+.product-page {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    display: flex;
+    justify-content: flex-start; /* 左对齐图片 */
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px; /* 与导航栏宽度一致 */
+    margin: 0 auto; /* 居中容器 */
+}
+
+.product-page .image-container {
+    width: 30%; /* 固定图片宽度 */
+    margin-right: 5%; /* 图片和右侧内容的间距 */
+    margin-left:5%;
+}
+
+.product-page .image-container img {
+    width: 100%; /* 让图片适应容器宽度 */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-page .text-container {
+    display: flex;
+    flex-direction: column; /* 纵向排列 */
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 70%; /* 右侧文本区域宽度 */
+    margin-left: 20%; /* 使文本区域右移20% */
+}
+
+.product-page h1 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.product-page p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.product-page .price {
+    font-size: 1rem;
+    color: #e60000;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.form-container {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* 包含所有按钮的容器 */
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px; /* 按钮之间的间距 */
+    margin-left:50%;
+    margin-top:-10%;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.stock{
+    width:20%;
+}
+.delete{
+    width:120%;
+}
+.like-unlike-btn, .delete, .add-to-cart1, .stock {
+    padding: 10px 20px;
+    font-size:0.8rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: #00000;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.like-unlike-btn:hover, .delete:hover, .add-to-cart:hover, .stock:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-group {
+        flex-direction: column; /* 在小屏幕下按钮竖直排列 */
+    }
+}
+
+/* 新增容器样式 */
+.container {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    margin: 0 auto;
+    border: 1px solid black; /* 给整个容器添加黑色边框 */
+    border-radius: 10px; /* 圆角效果 */
+}
+
+/* 为每个购物车项目添加黑色边框 */
+.cart-item {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* 为表格调整样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+/* 修改操作按钮的样式 */
+.quantity-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.quantity-btn {
+    font-size: 1rem;
+    padding: 5px 10px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.quantity-btn:disabled {
+    background-color: transparent;
+    color: #bbb;
+    cursor: not-allowed;
+    border-color: #ddd;
+}
+.checkout {
+    margin-left: 85%;
+    font-size: 1rem;
+    padding: 5px 10px;
+    width: 10%;
+    height: 2%;
+    background-color: transparent;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Align the text properly */
+}
+
+.checkout a {
+    text-decoration: none; /* Remove the underline */
+    color: inherit; /* Inherit the color of the parent element */
+    display: block; /* Make the link fill the button */
+    height: 100%; /* Ensure the link takes the full height of the button */
+    width: 100%; /* Ensure the link takes the full width of the button */
+    text-align: center; /* Center the text inside the button */
+}
+
+.checkout:hover {
+    background-color: #f0f0f0; /* Optional: Add a background color on hover */
+}
+ #main {
+    height: 100vh;  /* 保持主容器的高度为视口高度的70% */
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#slide-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+#click-section {
+    width: 35%;   /* 左侧区域占宽度35% */
+    height: 100%; /* 使左侧区域的高度占满父容器高度 */
+    padding: 20px 0;
+    position: relative;
+}
+
+#drawerboxes {
+    margin-left: 10%;
+    width: 100%;
+    height: 100%; /* 使drawerboxes的高度与click-section相同 */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: #000000;
+}
+
+#drawerboxes::before {
+    content: "";
+    width: 8px;
+    height: 94%;
+    position: absolute;
+    left: -10px;
+    top: 3%;
+    z-index: 120;
+}
+
+.drawerbox {
+    height: calc(100% / 5.5);
+    width: 70%;
+    position: relative;
+    z-index: 100;
+    transform: translateX(-70%);
+    transition: transform .5s ease-in-out;
+
+}
+
+.drawerbox.active {
+    transform: translateX(0);
+}
+
+.drawer-btn {
+    width: 100%;
+    height: 70%;
+    font: 600 20px '';
+    background-color: rgb(175, 190, 255);
+    border: none;
+    transition: background-color .5s ease-in-out;
+    color:#4F4F2F ;
+}
+
+.drawer-btn.active {
+    background-size: cover;
+    color: #4F4F2F;
+}
+
+.drawer-btn:hover {
+    cursor: pointer;
+}
+
+.drawer-head {
+    position: absolute;
+    color: #000000;
+    font-size: 3rem;
+    font-weight: 700;
+    right: -38px;
+    top: calc(50% - 135px);
+    text-shadow: 2px -1px 8px rgba(250, 80, 193, 0.323);
+}
+
+
+#slide-section {
+    position: relative;
+    height: 100%; /* 使右侧区域的高度占满父容器高度 */
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+    background: linear-gradient(to right bottom,
+        rgba(255, 255, 255, .6),
+        rgba(255, 255, 255, .3),
+        rgba(255, 255, 255, .2));
+    backdrop-filter: blur(11px);
+}
+
+#slide-bar {
+    position: absolute;
+    top: 10%;
+    left: 40px;
+    height: 80%;
+    width: 1px;
+    background-color: rgb(223, 223, 223);
+}
+
+#bar {
+    position: absolute;
+    height: calc(100% / 4);
+    width: 5px;
+    top: 0;
+    left: -1.2px;
+    background-color: rgb(175, 190, 255);
+    transition: transform .5s ease-in-out;
+}
+
+#card-section {
+    height: 100%;
+    width: 80%;
+    overflow: hidden;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0;
+    color: white;
+    font-size: 30px;
+    transition: transform .5s ease-in-out;
+}
+
+.card-small-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: min(5%, 10px);
+    color: rgb(70, 100, 180);
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    padding-bottom: min(20%, 40px);
+    color: rgb(70, 100, 180);
+}
+
+.card-content {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: rgb(94, 123, 255);
+    margin-bottom: 60px;
+}
+
+.card-img {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+}
+
+
+/* Animation and Card Layout Styles */
+@keyframes slide-fade-in {
+    from {
+        opacity: 0;
+        box-shadow: none;
+        transform: scale(.8) translateY(15vh);
+    }
+}
+
+.cards1 {
+    display: grid;
+    gap: 2rem;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(4, 30ch); /* Auto arrange */
+    margin-top: 20px;
+}
+
+.card1 {
+margin-top:3%;
+    animation: slide-fade-in both;
+    animation-timeline: view(); /* Browser view timeline */
+    animation-range: contain 0% contain 60%; /* Define animation time range */
+    border-radius: 10px;
+    line-height: 3;
+    box-shadow: 0px 8px 20px #00000022;
+    font-size: 32px;
+    letter-spacing: 5px;
+    color: #fff;
+    width: 100%;
+    height:100%;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom right,
+            #91defe, #99c0f9, #bdb6ec,
+            #d7b3e3, #efb3d5, #f9bccc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height:250px;
+    max-width:300px;
+}
+
+.card1 img {
+    width: 100%;
+    height: 100%;
+}
+
+.card1:nth-of-type(4n) {
+    grid-column: span 2;
+}
+
+.card1:nth-of-type(5n) {
+    grid-column: span 2;
+}
+
+.card1:nth-of-type(7n) {
+    grid-row: span 2;
+}
+
+/* Styles for Login and Registration Forms */
+form {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form h1 {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+button {
+    padding: 12px;
+    background-color: transparent;
+    color: #00000;
+    font-size: 16px;
+    border: 2px solid #00000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: rgba(76, 175, 80, 0.1); /* 在悬停时添加淡绿色背景 */
+    border-color: #45a049; /* 边框颜色加深 */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 点击时的阴影效果 */
+}
+
+
+
+form .error {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s;
+}
+
+.pagination a.active {
+    font-weight: bold;
+    background-color: #87CEEB;
+    color: white;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+
+/* Flash messages */
+.flash {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.flash.success {
+    background-color: #4CAF50;
+    color: #000000;
+}
+
+.flash.error {
+    background-color: #f44336;
+    color: #000000;
+}
+
+
+/* Form container styling */
+.product-form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label styling */
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Ensure all input fields have the same width and are aligned */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%; /* Ensure the inputs take up the full width of the form */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    transition: all 0.3s ease;
+}
+
+/* Input fields: focus effect */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+/* Form layout adjustment for small screens */
+@media (max-width: 768px) {
+    .product-form {
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+.delete{
+    margi-left:-15%;
+}
